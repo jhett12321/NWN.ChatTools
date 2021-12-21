@@ -8,14 +8,12 @@ namespace Jorteck.ChatTools
   [ServiceBindingOptions(BindingPriority = BindingPriority.Lowest)]
   public class CommandListProvider : ICommandListProvider
   {
-    protected const string DataKeyDMOnly = "dm_only";
-
     [Inject]
     public IReadOnlyList<IChatCommand> Commands { get; init; }
 
     public virtual bool CanUseCommand(NwPlayer player, IChatCommand command)
     {
-      if (command.UserData?.TryGetValue(DataKeyDMOnly, out object dmOnly) == true)
+      if (command.UserData?.TryGetValue(ChatCommandConstants.Keys.DMOnly, out object dmOnly) == true)
       {
         return (bool)dmOnly == false || player.IsDM;
       }
