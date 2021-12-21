@@ -28,7 +28,7 @@
     <RepositoryType>git</RepositoryType>
 
     <Description>
-      An Anvil Plugin for defining chat commands for players and DMs.
+      An Anvil Plugin for managing chat, commands for players and DMs, moderation and more!
     </Description>
 
     <PackageTags>Neverwinter Nights;NWN;</PackageTags>
