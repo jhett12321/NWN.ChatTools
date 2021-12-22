@@ -16,28 +16,23 @@ namespace Jorteck.ChatTools
     [Inject]
     private Lazy<ICommandListProvider> CommandListProvider { get; init; }
 
-    public string Command { get; }
-    public string Aliases { get; }
-    public Dictionary<string, object> UserData { get; }
-    public int? ArgCount { get; }
-    public string Description { get; }
-    public CommandUsage[] Usages { get; }
+    public string Command => "help";
+    public string Aliases => null;
+    public int? ArgCount => null;
+    public string Description => "Shows this command list, or help for a specific command.";
+
+    public CommandUsage[] Usages { get; } =
+    {
+      new CommandUsage("Show a list of all available commands."),
+      new CommandUsage("<command>", "Show help for a specific command."),
+    };
+
+    public Dictionary<string, object> UserData { get; } = new Dictionary<string, object>
+    {
+      [ChatCommandConstants.Keys.DMOnly] = false,
+    };
 
     private readonly StringBuilder stringBuilder = new StringBuilder();
-
-    public HelpCommand()
-    {
-      Command = "help";
-      Aliases = null;
-      ArgCount = null;
-      UserData = null;
-      Description = "Shows this command list, or help for a specific command.";
-      Usages = new[]
-      {
-        new CommandUsage("Show a list of all available commands."),
-        new CommandUsage("<command>", "Show help for a specific command."),
-      };
-    }
 
     public void ProcessCommand(NwPlayer caller, IReadOnlyList<string> args)
     {

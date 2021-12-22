@@ -19,11 +19,6 @@ namespace Jorteck.ChatTools
     string Aliases { get; }
 
     /// <summary>
-    /// Additional user data for the command.
-    /// </summary>
-    Dictionary<string, object> UserData { get; }
-
-    /// <summary>
     /// The number of arguments expected by this command. Set to null if the arguments are variable.
     /// </summary>
     int? ArgCount { get; }
@@ -37,6 +32,11 @@ namespace Jorteck.ChatTools
     /// A list of valid usages for this command. Shown in the help list.
     /// </summary>
     CommandUsage[] Usages { get; }
+
+    /// <summary>
+    /// Additional user data for the command.
+    /// </summary>
+    Dictionary<string, object> UserData { get; }
 
     /// <summary>
     /// Process this command with the specified arguments.
