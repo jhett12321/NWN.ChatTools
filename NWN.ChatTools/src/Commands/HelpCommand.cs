@@ -56,44 +56,20 @@ namespace Jorteck.ChatTools
       }
     }
 
-    private IEnumerable<IChatCommand> GetAvailableCommands(NwPlayer player)
-    {
-      foreach (IChatCommand command in CommandListProvider.Value.Commands)
-      {
-        if (CommandListProvider.Value.CanUseCommand(player, command))
-        {
-          yield return command;
-        }
-      }
-    }
-
-    private IChatCommand GetCommand(string commandName)
-    {
-      foreach (IChatCommand command in CommandListProvider.Value.Commands)
-      {
-        if (command.Command == commandName)
-        {
-          return command;
-        }
-      }
-
-      return null;
-    }
-
-    private void ShowAvailableCommandsToPlayer(NwPlayer player)
+        public void ShowAvailableCommandsToPlayer(NwPlayer player)
     {
       IEnumerable<IChatCommand> availableCommands = GetAvailableCommands(player);
       string message = GetCommandHelp(availableCommands);
       player.SendServerMessage(message, ColorConstants.White);
     }
 
-    private void ShowCommandHelpToPlayer(NwPlayer player, IChatCommand command)
+    public void ShowCommandHelpToPlayer(NwPlayer player, IChatCommand command)
     {
       string message = GetCommandHelp(command);
       player.SendServerMessage(message, ColorConstants.White);
     }
 
-    private string GetCommandHelp(IChatCommand command)
+    public string GetCommandHelp(IChatCommand command)
     {
       try
       {
@@ -130,7 +106,7 @@ namespace Jorteck.ChatTools
       }
     }
 
-    private string GetCommandHelp(IEnumerable<IChatCommand> commands)
+    public string GetCommandHelp(IEnumerable<IChatCommand> commands)
     {
       try
       {
@@ -151,6 +127,30 @@ namespace Jorteck.ChatTools
       {
         stringBuilder.Clear();
       }
+    }
+
+    private IEnumerable<IChatCommand> GetAvailableCommands(NwPlayer player)
+    {
+      foreach (IChatCommand command in CommandListProvider.Value.Commands)
+      {
+        if (CommandListProvider.Value.CanUseCommand(player, command))
+        {
+          yield return command;
+        }
+      }
+    }
+
+    private IChatCommand GetCommand(string commandName)
+    {
+      foreach (IChatCommand command in CommandListProvider.Value.Commands)
+      {
+        if (command.Command == commandName)
+        {
+          return command;
+        }
+      }
+
+      return null;
     }
   }
 }
