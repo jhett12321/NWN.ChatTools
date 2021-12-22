@@ -56,7 +56,7 @@ namespace Jorteck.ChatTools
       }
     }
 
-        public void ShowAvailableCommandsToPlayer(NwPlayer player)
+    public void ShowAvailableCommandsToPlayer(NwPlayer player)
     {
       IEnumerable<IChatCommand> availableCommands = GetAvailableCommands(player);
       string message = GetCommandHelp(availableCommands);
