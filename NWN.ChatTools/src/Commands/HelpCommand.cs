@@ -102,20 +102,23 @@ namespace Jorteck.ChatTools
         stringBuilder.Append(formattedBaseCommand);
         stringBuilder.Append(": ");
         stringBuilder.AppendLine(command.Description);
-        stringBuilder.AppendLine();
 
-        stringBuilder.AppendLine("==Usages==");
-        foreach (CommandUsage usage in command.Usages)
+        if (command.Usages != null && command.Usages.Length > 0)
         {
-          stringBuilder.Append(formattedBaseCommand);
-          if (!string.IsNullOrEmpty(usage.SubCommand))
+          stringBuilder.AppendLine();
+          stringBuilder.AppendLine("==Usages==");
+          foreach (CommandUsage usage in command.Usages)
           {
-            stringBuilder.Append(' ');
-            stringBuilder.Append(usage.SubCommand.ColorString(ColorConstants.Orange));
-          }
+            stringBuilder.Append(formattedBaseCommand);
+            if (!string.IsNullOrEmpty(usage.SubCommand))
+            {
+              stringBuilder.Append(' ');
+              stringBuilder.Append(usage.SubCommand.ColorString(ColorConstants.Orange));
+            }
 
-          stringBuilder.Append(": ");
-          stringBuilder.AppendLine(usage.Description);
+            stringBuilder.Append(": ");
+            stringBuilder.AppendLine(usage.Description);
+          }
         }
 
         stringBuilder.Append("=================");
