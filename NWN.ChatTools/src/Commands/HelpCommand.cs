@@ -120,7 +120,7 @@ namespace Jorteck.ChatTools
           stringBuilder.AppendLine(command.Description);
         }
 
-        stringBuilder.AppendLine("=================");
+        stringBuilder.Append("=================");
         return stringBuilder.ToString().ColorString(ColorConstants.White);
       }
       finally
