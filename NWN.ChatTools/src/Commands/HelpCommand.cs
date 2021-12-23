@@ -17,7 +17,7 @@ namespace Jorteck.ChatTools
     private Lazy<ICommandListProvider> CommandListProvider { get; init; }
 
     public string Command => "help";
-    public string Aliases => null;
+    public string[] Aliases => null;
     public int? ArgCount => null;
     public string Description => "Shows this command list, or help for a specific command.";
 

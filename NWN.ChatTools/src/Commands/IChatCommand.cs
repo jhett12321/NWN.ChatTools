@@ -16,7 +16,7 @@ namespace Jorteck.ChatTools
     /// <summary>
     /// Additional aliases for this command. Not shown in the help list.
     /// </summary>
-    string Aliases { get; }
+    string[] Aliases { get; }
 
     /// <summary>
     /// The number of arguments expected by this command. Set to null if the arguments are variable.
