@@ -90,7 +90,11 @@ namespace Jorteck.ChatTools
 
     private void TryExecuteCommand(NwPlayer sender, IChatCommand command, IReadOnlyList<string> args)
     {
-      if (!commandListProvider.CanUseCommand(sender, command))
+      if (!command.IsAvailable)
+      {
+        ShowCommandUnavailableError(command, sender);
+      }
+      else if (!commandListProvider.CanUseCommand(sender, command))
       {
         ShowNoPermissionError(sender);
       }
@@ -102,6 +106,11 @@ namespace Jorteck.ChatTools
       {
         command.ProcessCommand(sender, args);
       }
+    }
+
+    private void ShowCommandUnavailableError(IChatCommand command, NwPlayer player)
+    {
+      player.SendErrorMessage($"Command \"{command.Command}\" is unavailable at this time.");
     }
 
     private void ShowNoPermissionError(NwPlayer player)

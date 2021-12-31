@@ -133,7 +133,7 @@ namespace Jorteck.ChatTools
     {
       foreach (IChatCommand command in CommandListProvider.Value.Commands)
       {
-        if (CommandListProvider.Value.CanUseCommand(player, command))
+        if (command.IsAvailable && CommandListProvider.Value.CanUseCommand(player, command))
         {
           yield return command;
         }
