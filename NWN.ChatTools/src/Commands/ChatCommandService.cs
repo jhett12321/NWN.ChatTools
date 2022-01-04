@@ -44,17 +44,44 @@ namespace Jorteck.ChatTools
       {
         if (eventData.Message.StartsWith(commandPrefix))
         {
-          bool validCommand = TryProcessCommand(player, eventData.Message[commandPrefix.Length..]);
-          eventData.Skip = true;
-
-          if (!validCommand)
+          string commandText = eventData.Message[commandPrefix.Length..];
+          if (ProcessCommandText(player, commandText))
           {
-            player.SendErrorMessage($"Unknown command. Type {helpCommandText} for help.");
+            eventData.Skip = true;
           }
 
           return;
         }
       }
+    }
+
+    private bool ProcessCommandText(NwPlayer player, string commandText)
+    {
+      if (ShouldIgnoreCommand(commandText))
+      {
+        return false;
+      }
+
+      bool validCommand = TryProcessCommand(player, commandText);
+      if (!validCommand)
+      {
+        player.SendErrorMessage($"Unknown command. Type {helpCommandText} for help.");
+      }
+
+      return true;
+    }
+
+    private bool ShouldIgnoreCommand(string commandText)
+    {
+      foreach (string ignoreCommand in configService.Config.IgnoreCommands)
+      {
+        if (commandText.StartsWith(ignoreCommand))
+        {
+          return true;
+        }
+      }
+
+      return false;
     }
 
     private bool TryProcessCommand(NwPlayer sender, string rawCommand)
