@@ -28,7 +28,7 @@
     <RepositoryType>git</RepositoryType>
 
     <Description>
-      An Anvil Plugin for defining chat commands for players and DMs.
+      An Anvil Plugin for managing chat, commands for players and DMs, moderation and more!
     </Description>
 
     <PackageTags>Neverwinter Nights;NWN;</PackageTags>
@@ -58,7 +58,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NWN.Anvil" Version="8193.34.0-dev.12.799af3f5" ExcludeAssets="runtime" PrivateAssets="all" />
+    <PackageReference Include="NWN.Anvil" Version="8193.34.3" ExcludeAssets="runtime" PrivateAssets="all" />
     <PackageReference Include="YamlDotNet" Version="11.2.1" PrivateAssets="compile" />
   </ItemGroup>
 
